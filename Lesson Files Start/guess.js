@@ -1,50 +1,41 @@
-console.log('Done')
-
-/*
-Declare the price 
-Get the input from the user to Store
-if num=6
-print=somegthing
-else 
+// console.log('Done')
 
 
+var guessButton = document.querySelector("#guess");
+var price;
+var resetButton = document.querySelector("#reset");
 
-*/
-var price=Math.floor(Math.random()*100)+1;
-var btn=document.querySelector('button');
-btn.addEventListener('click',decideIf);
+guessButton.addEventListener("click", decideIfWon);
+resetButton.addEventListener("click", resetGame);
 
-var btn=document.querySelector('button');
-btn.addEventListener('click',restart);
+function resetGame() {
+  var guessField = document.querySelector("#guessField");
+  var lowOrHi = document.querySelector("#lowOrHi");
 
-
-function decideIf(){
-    var guess=document.querySelector('#guessField');
-    var loworHigh=document.querySelector('#lowOrHi');
-
-    if(guess.value>price){
-        loworHigh.textContent='too high'
-    }
-    else if(guess.value<price){
-        loworHigh.textContent='too low'
-    }else{
-        loworHigh.textContent='win'
-    }
-
-    function restart(){
-        randomize();
-        var guess=document.querySelector('#guessField');
-        guess.value='';
-
-        var lowOrHimessage=document.querySelector('#lowOrHi');
-        lowOrHimessage.textContent='';
-
-
-    }
-
-
-
+  randomize();
+  guessField.value = "";
+  lowOrHi.textContent = "";
 }
 
+function randomize() {
+  price = Math.floor(Math.random() * 100) + 1;
+  console.log(price);
+}
 
-document.getElementById("guessField").reset();
+function decideIfWon() {
+  var guessField = document.querySelector("#guessField");
+  var lowOrHi = document.querySelector("#lowOrHi");
+
+  if (guessField.value > price) {
+    lowOrHi.textContent = "too high";
+  } else if (guessField.value < price) {
+    lowOrHi.textContent = "too low";
+  } else {
+    lowOrHi.textContent = "winner";
+    
+  }
+}
+
+randomize();
+
+
